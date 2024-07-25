@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player: Music for everyone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="utility.css">
+</head>
+
+<body>
+    <div class="container ">
+        <div class="left leftRigntComn">
+            <div class="leftTop rounded">
+                <div class="logo"><img class="invert" src="logo.svg" alt="Logo"></div>
+                <ul class="leftTopUL">
+                    <li class="dfaic"><img class="invert" src="home.svg" alt="Home">Home</li>
+                    <li class="dfaic"><img class="invert" src="search.svg" alt="Search">Search</li>
+                </ul>
+            </div>
+            <div class="leftBottom dffdc rounded">
+                <div class="library">
+                    <ul>
+                        <li class="dfaic"><img class="invert" src="library.svg" alt="Library">Your Library</li>
+                    </ul>
+                </div>
+                <div class="librarySongs">
+                     <div class="allTimeHits" id="allTimeHits">
+                        <!-- <div class="song  df" id="song">
+                            <div class="songImg ">
+                                <img src="apnaBanaLe.jpg" alt="songImg">
+                                <div class="playSongButton dfaic">
+                                    <img id="playSongButton" src="play.svg" alt="play">
+                                </div>
+                            </div>
+                            <div class="songName ">
+                                <h4><a href="http://127.0.0.1:5500/songs/all/Apna-Bana-Le(PagalWorld).mp3"></a>Apna-Bana-Le(PagalWorld).mp3</h4>
+                                <p>Arjit Singh</p>
+                            </div>
+                        </div>  -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right leftRigntComn dffdcaic">
+            <div class="signupBar dfjcsbaic">
+                <div class="signupBarLeft df">
+                    <div class="leftArrow dfaic"><img class="invert" src="left.svg" alt="Left"></div>
+                    <div class="rightArrow dfaic"><img class="invert" src="right.svg" alt="Right"></div>
+                </div>
+                <div class="signupBarRight dfjccaic">
+                    <div class="signUp">
+                        <button>Sign up</button>
+                    </div>
+                    <div>
+                        <button class="login">Log in</button>
+                    </div>
+                </div>
+            </div>
+            <div class="spotifyPlaylists dffdc">
+                <div class="artists dfjcsbaic">
+                    <div>
+                        <h2>Popular artists</h2>
+                    </div>
+                    <div><button>Show all</button></div>
+                </div>
+                <div class="panel df">
+                    <div class="subArtists">
+                        <div class="play">
+                            <img src="play.svg" alt="play">
+                        </div>
+                        <div class="subArtistsImage">
+                            <img src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca" alt="image">
+                        </div>
+                        <div id="subArtistsData">
+                            <h4>Pritam</h4>
+                            <p>Artist</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- --------------------------------------------------------------------------- -->
+                <!-- -------------------------------------------------------------------------- -->
+            </div>
+            <div class="playbar dfjcsbaic">
+                <div class="playbarLeft">
+                    <marquee behavior="" direction="" class="playbarLeftMarquee"></marquee>
+                </div>
+                <div class="playbarMiddle ">
+                    <div class="playbarMiddleTop dfjccaic">
+                        <div class="shuffle"><img id="shuffle" src="shuffle.svg" alt="shuffle"></div>
+                        <div class="previous"><img id="previous" src="previous.svg" alt="previous"></div>
+                        <div class="playbarPlay"><img id="playbarPlay" src="play.svg" alt="playbarPlay"></div>
+                        <div class="next"><img id="next" src="next.svg" alt="next"></div>
+                        <div class="repeat"><img id="repeat" src="repeat.svg" alt="repeat"></div>
+                    </div>
+                    <div class="playbarMiddleBottom df">
+                        <div class="currentSongTime">00:00</div>
+                        <div class="seekbar dfjccaic ">
+                            <div class="seekbarMain " id="seekbarMain">
+                                <div class="seekbarCircle" id="seekbarCircle"></div>
+                            </div>
+                        </div>
+                        <div class="currentSongTotalTime">00:00</div>
+                    </div>
+                </div>
+                <div class="playbarRight df">
+                    <div class="volume">
+                        <img id="volume" src="volume.svg" alt="volume">
+                    </div>
+                    <div class="volumebar dfjccaic">
+                        <div class="volumebarMain">
+                            <div class="volumebarCircle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

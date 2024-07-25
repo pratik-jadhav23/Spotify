@@ -1,0 +1,165 @@
+.df{
+    display: flex;
+}
+.dfjcc{
+    display: flex;
+    justify-content: center;
+}
+.dfaic{
+    display: flex;
+    align-items: center;
+}
+.dfjccaic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dfjcsa{
+    display: flex;
+    justify-content: space-around;
+}
+.dfjcsaaic{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.dfjcsbaic{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dfjcsb{
+    display: flex;
+    justify-content: space-between;
+}
+.dfjcse{
+    display: flex;
+    justify-content: space-evenly;
+}
+.dffdc{
+    display: flex;
+    flex-direction: column;
+}
+.dffdcaic{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dffdcjcsb{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.width100{
+    width: 100%;
+}
+.height100{
+    height: 100%;
+}
+.rounded{
+    border-radius: 8px;
+}
+.invert{
+    filter: invert(1);
+}
+.border{
+    border: 2px solid;
+}
+
+/* Scrollbar styles for Webkit-based browsers (Chrome, Safari) */
+/* ::-webkit-scrollbar {
+    width: 1px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2e2e2e; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+} */
+
+/* Scrollbar styles for Firefox */
+/* body {
+    scrollbar-width: 1px;
+    scrollbar-color: #888 #2e2e2e;
+}
+
+body::-webkit-scrollbar {
+    width: 4px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #2e2e2e;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+    border: 3px solid #2e2e2e;
+} */
+.hidden{
+    display: none;
+}
+.borderPurple{
+    border: 1px solid #bb2ea3;
+}
+.borderRed{
+    border: 1px solid red;
+}
+
+/* on hever scroll bar-------------------------------------------------------------------------- */
+/* Scrollbar styles for Webkit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 2px; /* Thin width */
+    height: 8px; /* Thin height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #2e2e2e; /* Dark background */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444; /* Dark grey color for the thumb */
+    border-radius: 4px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Slightly lighter grey on hover */
+}
+
+/* Hide the scrollbar by default */
+body::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+
+/* Show scrollbar when scrolling */
+body {
+    overflow-y: scroll; /* Enable vertical scrolling */
+}
+
+body:hover::-webkit-scrollbar {
+    display: block; /* Show scrollbar on hover */
+}
+
+/* Scrollbar styles for Firefox */
+body {
+    scrollbar-width:2px; /* Thin width */
+    scrollbar-color: #444 #2e2e2e; /* Thumb and track colors */
+}
+
+/* Hide scrollbar by default */
+body {
+    overflow: hidden;
+}
+
+/* Show scrollbar when scrolling */
+body:hover {
+    overflow-y: scroll;
+}
