@@ -52,16 +52,19 @@ async function getSongs() {
     let div = document.createElement("div")
     div.innerHTML = response
     let as = div.getElementsByTagName("a")
+    // console.log('as = ',as[1].href);
     let songsObj = { songs: [], songsNames: [] }
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
+        
         if (element.href.endsWith(".mp3")) {
-            // console.log('element.href = ',element.href.split("http://127.0.0.1:5500")[1]);
-            songsObj.songs.push(element.href.split("http://127.0.0.1:5500")[1])
-            songsObj.songsNames.push(element.title)
+            // console.log('element.href = ',"/songs/"+element.href.split("/songs/")[1].replaceAll("%20", " "));
+            songsObj.songs.push("/songs/"+element.href.split("/songs/")[1].replaceAll("%20", " "))
+            // console.log('element.title = ',element.innerText);
+            songsObj.songsNames.push(element.innerText)
         }
     }
-    console.log('songsobj = ',songsObj);
+    // console.log('songsobj = ',songsObj);
 
     // songsObj.songs.map(item => {
     //     console.log('item = ', item.split("http://127.0.0.1:5500")[1]);
