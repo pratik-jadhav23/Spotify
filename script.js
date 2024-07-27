@@ -56,7 +56,7 @@ async function getSongs() {
     let songsObj = { songs: [], songsNames: [] }
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
-        console.log('element = ',element);
+        console.log('element =  ',element);
         if (element.href.endsWith(".mp3")) {
             // console.log('element.href = ',"/songs/"+element.href.split("/songs/")[1].replaceAll("%20", " "));
             songsObj.songs.push("/songs/"+element.href.split("/songs/")[1].replaceAll("%20", " "))
