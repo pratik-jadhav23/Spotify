@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -30,7 +30,7 @@
                         PM</span></a></li>
         </ul>
     </div>
-       <!-- <div class="song  df" id="song">
+       <div class="song  df" id="song">
                             <div class="songImg ">
                                 <img src="apnaBanaLe.jpg" alt="songImg">
                                 <div class="playSongButton dfaic">
@@ -41,7 +41,69 @@
                                 <h4><a href="http://127.0.0.1:5500/songs/all/Apna-Bana-Le(PagalWorld).mp3"></a>Apna-Bana-Le(PagalWorld).mp3</h4>
                                 <p>Arjit Singh</p>
                             </div>
-                        </div>  -->
+                        </div> 
+
+                              <div class="subArtists">
+                        <div class="play">
+                            <img src="svgs/play.svg" alt="play">
+                        </div>
+                        <div class="subArtistsImage">
+                            <img src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca" alt="image">
+                        </div>
+                        <div id="subArtistsData">
+                            <h4>Pritam</h4>
+                            <p>Artist</p>
+                        </div>
+                    </div>
 </body>
 
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Example of other divisions */
+        .background-div {
+            width: 100%;
+            height: 200px;
+            background-color: lightblue;
+            position: relative;
+            z-index: 1; /* Lower z-index */
+        }
+
+        /* Division to be placed on top */
+        .top-div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute; /* or fixed */
+            top: 50px; 
+            left: 50px; 
+            z-index: 10; /* Higher z-index to be on top */
+        }
+    </style>
+    <title>Top Division Example</title>
+</head>
+<body>
+
+    <div class="background-div">This is a background div</div>
+    <div class="background-div">This is another background div</div>
+
+    <!-- The div that will be on top of all others -->
+    <div class="top-div">I'm on top!</div>
+
+      <!-- <div class="dfaic">
+                    <span class="playbarCurrent">Current Album: </span>  <img src="svgs/up.svg" alt="up.svg">
+                </div> -->
+                <!-- <div class="shuffle"><img id="shuffle" src="svgs/shuffle.svg" alt="shuffle"></div> -->
+
+                <!-- <div class="volumebarMain">
+                                <div class="volumebarCircle"></div>
+                            </div> -->
+
+</body>
 </html>
