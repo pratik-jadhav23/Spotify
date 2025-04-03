@@ -1,0 +1,49 @@
+/* on hever scroll bar-------------------------------------------------------------------------- */
+/* Scrollbar styles for Webkit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 2px; /* Thin width */
+    height: 8px; /* Thin height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #2e2e2e; /* Dark background */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444; /* Dark grey color for the thumb */
+    border-radius: 4px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Slightly lighter grey on hover */
+}
+
+/* Hide the scrollbar by default */
+body::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+
+/* Show scrollbar when scrolling */
+body {
+    overflow-y: scroll; /* Enable vertical scrolling */
+}
+
+body:hover::-webkit-scrollbar {
+    display: block; /* Show scrollbar on hover */
+}
+
+/* Scrollbar styles for Firefox */
+body {
+    scrollbar-width:2px; /* Thin width */
+    scrollbar-color: #444 #2e2e2e; /* Thumb and track colors */
+}
+
+/* Hide scrollbar by default */
+body {
+    overflow: hidden;
+}
+
+/* Show scrollbar when scrolling */
+body:hover {
+    overflow-y: scroll;
+}
