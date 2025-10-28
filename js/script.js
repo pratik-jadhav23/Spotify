@@ -25,53 +25,24 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getAllAlbums() {
     let allFolders = await fetch("songs/popularArtists")
+    
     let response = await allFolders.text()
+    // console.log(allFolders, response);
     let div = document.createElement("div")
     div.innerHTML = response
     let as = div.getElementsByTagName("a")
+    
     for (let i = 1; i < as.length; i++) {
-        if (as[i].href.includes("popularArtists/")) globalAllFoldersNames.push({ folderName: "popularArtists/" + as[i].innerText, artistNames: as[i].innerText })
+        if (as[i].href.includes("popularArtists/")) {
+            // console.log(as[i], as[i].innerText, as[i].href);
+            // console.log(as[i].title);
+            
+            globalAllFoldersNames.push({ folderName: "popularArtists/" + as[i].title, artistNames: as[i].title })
+        }
         // globalAllFoldersNames.push({ folderName: "popularArtists/" + as[i].innerHTML, artistNames: as[i].innerHTML })
     }
-}
-
-async function getSongs(folderName, playlistName) {
-    // console.log('fname = ', folderName);
-    let allSongs = await fetch(`/songs/${folderName}`)
-    let response = await allSongs.text();
-    let div = document.createElement("div")
-    div.innerHTML = response
-    let as = div.getElementsByTagName("a")
-    songsObj = { songs: [], songsNames: [] }
-    for (let index = 0; index < as.length; index++) {
-        const element = as[index];
-        if (element.href.endsWith(".mp3")) {
-            songsObj.songs.push("/songs/" + element.href.split("/songs/")[1].replaceAll("%20", " "))
-            songsObj.songsNames.push(element.innerText)
-        }
-    }
-    document.querySelector(".playlistName").innerText = playlistName
-
-
-    for (let index = 0; index < songsObj.songs.length; index++) {
-        let html = `<div class="song  df">
-                        <div class="songImg ">
-                            <img src="/songs/all/apnaBanaLe.jpg" alt="songImg">
-                            <div class="playSongButton dfaic">
-                                <img id="playSongButton" src="svgs/playbarPlay.svg" alt="play">
-                            </div>
-                        </div>
-                        <div class="songName ">
-                            <h4><a href="${songsObj.songs[index]}"></a>${songsObj.songsNames[index]}</h4>
-                            <p>Artist Names</p>
-                        </div>
-                    </div>`
-
-        document.querySelector(".allSongs").innerHTML += html
-    }
-
-    return songsObj
-
+    console.log("globalAllFoldersNames= ", globalAllFoldersNames);
+    
 }
 
 async function createSubArtists() {
@@ -92,6 +63,135 @@ async function createSubArtists() {
                     </div>`
         document.querySelector(".panel").innerHTML = document.querySelector(".panel").innerHTML + html
     }
+     for (let index = 0; index < imageSRC.length; index++) {
+        let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName}">
+                        <div class="play">
+                            <img src="svgs/play.svg" alt="play">
+                        </div>
+                        <div class="subArtistsImage">
+                            <img src="${imageSRC[index]}" alt="image">
+                        </div>
+                        <div id="subArtistsData">
+                            <h4>${artistName[index]}</h4>
+                            <p>Artist</p>
+                        </div>
+                    </div>`
+        document.querySelector(".panel").innerHTML = document.querySelector(".panel").innerHTML + html
+    }
+     for (let index = 0; index < imageSRC.length; index++) {
+        let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName}">
+                        <div class="play">
+                            <img src="svgs/play.svg" alt="play">
+                        </div>
+                        <div class="subArtistsImage">
+                            <img src="${imageSRC[index]}" alt="image">
+                        </div>
+                        <div id="subArtistsData">
+                            <h4>${artistName[index]}</h4>
+                            <p>Artist</p>
+                        </div>
+                    </div>`
+        document.querySelector(".panel").innerHTML = document.querySelector(".panel").innerHTML + html
+    }
+}
+
+async function getSongs(folderName, playlistName) {
+    // console.log('fname = ', folderName);
+    let allSongs = await fetch(`songs/${folderName}`)
+    let response = await allSongs.text();
+    
+    let div = document.createElement("div")
+    div.innerHTML = response
+    let as = div.getElementsByTagName("a")
+    songsObj = { songs: [], songsNames: [] }
+    for (let index = 0; index < as.length; index++) {
+        const element = as[index];
+        if (element.href.endsWith(".mp3")) {
+            // console.log(as[index].href);
+            songsObj.songs.push("songs/" + element.href.split("/songs/")[1].replaceAll("%20", " "))
+            // console.log(element);
+            
+            songsObj.songsNames.push(element.title)
+        }
+    }
+    document.querySelector(".playlistName").innerText = playlistName
+
+    console.log(songsObj);
+    
+    for (let index = 0; index < songsObj.songs.length; index++) {
+        let html = `<div class="song  df">
+                        <div class="songImg ">
+                            <img src="songs/all/apnaBanaLe.jpg" alt="songImg">
+                            <div class="playSongButton dfaic">
+                                <img id="playSongButton" src="svgs/playbarPlay.svg" alt="play">
+                            </div>
+                        </div>
+                        <div class="songName ">
+                            <h4><a href="${songsObj.songs[index]}"></a>${songsObj.songsNames[index]}</h4>
+                            <p>Artist Names</p>
+                        </div>
+                    </div>`
+
+        document.querySelector(".allSongs").innerHTML += html
+    }
+
+    return songsObj
+
+}
+
+function albumLoad() {
+    let event = document.querySelectorAll(".subArtists")
+    // console.log(event);
+    
+    let previousAlbumData
+    Array.from(event).forEach((e, index) => {
+        e.addEventListener("click", async (item) => {
+            if (document.querySelector(".playlistName").innerText != e.getElementsByTagName("h4")[0].innerText) {
+
+                if (previousAlbumData) {
+                    previousAlbumData.style.backgroundColor = ""
+                    previousAlbumData.children[0].style.opacity = ""
+                }
+
+                document.querySelector(`.allSongs`).innerHTML = ""
+                let tempFolderName = item.currentTarget.dataset.folder
+                await getSongs(item.currentTarget.dataset.folder, e.getElementsByTagName("h4")[0].innerText);
+                currentPlayedAlbum = { "name": document.querySelector(".playlistName").innerText, "e": e }
+                let event = document.querySelectorAll(".song") 
+                console.log(songsObj, tempFolderName);
+                
+                playMusic(songsObj.songsNames[0], tempFolderName, event[0], previousData)
+                previousData = event[0]
+                e.style.backgroundColor = "#393939"
+                e.children[0].style.opacity = 1
+                previousAlbumData = e
+                document.querySelector(".home").style.backgroundColor = "transparent"
+                await playSongs();
+            }
+        })
+    })
+}
+
+async function playSongs() {
+    let event = document.querySelectorAll(".song")
+    Array.from(event).forEach((e, index) => {
+        e.addEventListener("click", () => {
+            globalSongDivVarIndex = index
+            let songName = e.querySelector(".songName").getElementsByTagName("h4")[0].innerText.trim()
+            
+            globalSongDivVar = e
+            let folderName = e.getElementsByTagName("a")[0].href.split("/")[5]
+            
+            if (folderName == "popularArtists") {
+                folderName = folderName + "/" + e.getElementsByTagName("a")[0].href.split("/")[5]
+            }
+            console.log(songName,folderName);
+            playMusic(songName, folderName, e, previousData);
+            previousData = e
+            previousPlayedAlbum = document.querySelector(".playlistName").innerText
+        })
+    })
+
 }
 
 const playMusic = (songName, folderName, e, previousData) => {
@@ -109,7 +209,7 @@ const playMusic = (songName, folderName, e, previousData) => {
         }
     }
     else {
-        currentSong.src = `/songs/${folderName}/` + songName
+        currentSong.src = `songs/${folderName}/` + songName
         currentSong.play()
         if (previousData) {
             previousData.style.backgroundColor = "transparent"
@@ -125,56 +225,13 @@ const playMusic = (songName, folderName, e, previousData) => {
     // previousPlayedAlbum = document.querySelector(".playlistName").innerText
 }
 
-async function playSongs() {
-    let event = document.querySelectorAll(".song")
-    Array.from(event).forEach((e, index) => {
-        e.addEventListener("click", () => {
-            globalSongDivVarIndex = index
-            let songName = e.querySelector(".songName").getElementsByTagName("h4")[0].innerText.trim()
-            globalSongDivVar = e
-            let folderName = e.getElementsByTagName("a")[0].href.split("/")[4]
-            if (folderName == "popularArtists") folderName = folderName + "/" + e.getElementsByTagName("a")[0].href.split("/")[5]
-            playMusic(songName, folderName, e, previousData);
-            previousData = e
-            previousPlayedAlbum = document.querySelector(".playlistName").innerText
-        })
-    })
-
-}
-
-function albumLoad() {
-    let event = document.querySelectorAll(".subArtists")
-    let previousAlbumData
-    Array.from(event).forEach((e, index) => {
-        e.addEventListener("click", async (item) => {
-            if (document.querySelector(".playlistName").innerText != e.getElementsByTagName("h4")[0].innerText) {
-
-                if (previousAlbumData) {
-                    previousAlbumData.style.backgroundColor = ""
-                    previousAlbumData.children[0].style.opacity = ""
-                }
-
-                document.querySelector(`.allSongs`).innerHTML = ""
-                let tempFolderName = item.currentTarget.dataset.folder
-                await getSongs(item.currentTarget.dataset.folder, e.getElementsByTagName("h4")[0].innerText);
-                currentPlayedAlbum = { "name": document.querySelector(".playlistName").innerText, "e": e }
-                let event = document.querySelectorAll(".song")
-                playMusic(songsObj.songsNames[0], tempFolderName, event[0], previousData)
-                previousData = event[0]
-                e.style.backgroundColor = "#393939"
-                e.children[0].style.opacity = 1
-                previousAlbumData = e
-                document.querySelector(".home").style.backgroundColor = "transparent"
-                await playSongs();
-            }
-        })
-    })
-}
 
 async function main() {
     await getAllAlbums();
     await createSubArtists();
+    //left panel all songs and albums load
     await getSongs("all", "Your Library");
+    // on right side clicking album load songs
     albumLoad();
     await playSongs();
     let previousVolume

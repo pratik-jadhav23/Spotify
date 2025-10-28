@@ -1,125 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>PratikSpotify - Web Player: Music for everyone</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/utility.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/utility.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> -->
     <!-- <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
         </style> -->
-</head>
+  </head>
 
-<body>
-    <div class="container ">
-        <div class="left dffdc">
-            <div class="leftTop rounded">
-                <div class="leftSidePanelClose"><img src="svgs/xmark.svg" alt="xmark"></div>
-                <div class="logo"><a href="index.html"><img class="invert cursorPointer" src="svgs/logo.svg"
-                            alt="Logo"></a></div>
-                <ul class="leftTopUL">
-                    <li class="dfaic home rounded"><img class="invert" src="svgs/home.svg" alt="Home">Home</li>
-                    <li class="dfaic search"><img class="invert" src="svgs/search.svg" alt="Search">
-                        <div class="searchbar">
-                            <input type="search" id="searchInput" placeholder="Search song & press Enter "
-                                autocomplete="off" autocorrect="off" autocapitalize="off">
-                        </div>
-                        <button id="searchButton" class="cursorPointer">Search</button>
-                    </li>
-                </ul>
-                <div id="searchDisplay">
-
-                </div>
-            </div>
-            <div class="leftBottom dffdc rounded" id="leftBottom">
-                <div class="library">
-                    <ul>
-                        <li class="dfaic"><img class="invert" src="svgs/library.svg" alt="Library">
-                            <p class="playlistName"></p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="librarySongs">
-                    <div class="allSongs"></div>
-                </div>
-            </div>
+  <body>
+    <div class="container">
+      <div class="left dffdc">
+        <div class="leftTop rounded">
+          <div class="leftSidePanelClose">
+            <img src="svgs/xmark.svg" alt="xmark" />
+          </div>
+          <div class="logo">
+            <a href="index.html"
+              ><img
+                class="invert cursorPointer"
+                src="svgs/logo.svg"
+                alt="Logo"
+            /></a>
+          </div>
+          <ul class="leftTopUL">
+            <li class="dfaic home rounded">
+              <img
+                class="invert"
+                src="svgs/home.svg"
+                alt="Home"
+              />Home
+            </li>
+            <li class="dfaic search">
+              <img
+                class="invert"
+                src="svgs/search.svg"
+                alt="Search"
+              />
+              <div class="searchbar">
+                <input
+                  type="search"
+                  id="searchInput"
+                  placeholder="Search song & press Enter "
+                  autocomplete="off"
+                  autocorrect="off"
+                  autocapitalize="off"
+                />
+              </div>
+              <button id="searchButton" class="cursorPointer">
+                Search
+              </button>
+            </li>
+          </ul>
+          <div id="searchDisplay"></div>
         </div>
-        <div class="right dffdcaic rounded" style="overflow: hidden;">
-            <div class="signupBar dfjcsbaic">
-                <div class="signupBarLeft df">
-                    <div class="bars"><img src="svgs/bars.svg" alt="bars"></div>
-                    <div class="leftArrow dfaic"><img class="invert" src="svgs/left.svg" alt="Left"></div>
-                    <div class="rightArrow dfaic"><img class="invert" src="svgs/right.svg" alt="Right"></div>
-                </div>
-                <div class="signupBarRight dfjccaic">
-                    <div class="signUp">
-                        <button>Sign up</button>
-                    </div>
-                    <div>
-                        <button class="login">Log in</button>
-                    </div>
-                </div>
-            </div>
-            <div class="spotifyPlaylists dffdc ">
-                <div class="artists dfjcsbaic">
-                    <div>
-                        <h2>Popular artists</h2>
-                    </div>
-                    <div><button>Show all</button></div>
-                </div>
-                <div class="panel"></div>
-            </div>
-            <div class="playbar dffdc rounded">
-
-                <div class="playbarMain dfjcsbaic">
-                    <div class="playbarLeft">
-                        <marquee behavior="" direction="" class="playbarLeftMarquee"></marquee>
-                    </div>
-                    <div class="playbarMiddle ">
-                        <div class="playbarMiddleTop dfjccaic">
-
-                            <div class="previous" title="Previous"><img id="previous" src="svgs/previous.svg"
-                                    alt="previous"></div>
-                            <div class="playbarPlay" title="Play"><img id="playbarPlay" src="svgs/playbarPlay.svg"
-                                    alt="playbarPlay"></div>
-                            <div class="next" title="Next"><img id="next" src="svgs/next.svg" alt="next"></div>
-                            <div class="repeat" title="Repeat"><svg class="repeatSvg svgsCommon"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                    <path
-                                        d="M0 224c0 17.7 14.3 32 32 32s32-14.3 32-32c0-53 43-96 96-96l160 0 0 32c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l64-64c12.5-12.5 12.5-32.8 0-45.3l-64-64c-9.2-9.2-22.9-11.9-34.9-6.9S320 19.1 320 32l0 32L160 64C71.6 64 0 135.6 0 224zm512 64c0-17.7-14.3-32-32-32s-32 14.3-32 32c0 53-43 96-96 96l-160 0 0-32c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9l-64 64c-12.5 12.5-12.5 32.8 0 45.3l64 64c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-32 160 0c88.4 0 160-71.6 160-160z" />
-                                </svg></div>
-                        </div>
-                        <div class="playbarMiddleBottom df">
-                            <div class="currentSongTime">00:00</div>
-                            <div class="seekbar dfjccaic ">
-                                <div class="seekbarMain " id="seekbarMain">
-                                    <div class="seekbarCircle" id="seekbarCircle"></div>
-                                </div>
-                            </div>
-                            <div class="currentSongTotalTime">00:00</div>
-                        </div>
-                    </div>
-                    <div class="playbarRight df">
-                        <div class="volume">
-                            <img id="volume" src="svgs/volume.svg" alt="volume">
-                        </div>
-                        <div class="volumebar">
-
-                            <div class="range">
-                                <input type="range" id="myinput" value="100">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="leftBottom dffdc rounded" id="leftBottom">
+          <div class="library">
+            <ul>
+              <li class="dfaic">
+                <img
+                  class="invert"
+                  src="svgs/library.svg"
+                  alt="Library"
+                />
+                <p class="playlistName"></p>
+              </li>
+            </ul>
+          </div>
+          <div class="librarySongs">
+            <div class="allSongs"></div>
+          </div>
         </div>
+      </div>
+      <div class="right dffdcaic rounded" style="overflow: hidden">
+        <div class="signupBar dfjcsbaic">
+          <div class="signupBarLeft df">
+            <div class="bars">
+              <img src="svgs/bars.svg" alt="bars" />
+            </div>
+            <div class="leftArrow dfaic">
+              <img class="invert" src="svgs/left.svg" alt="Left" />
+            </div>
+            <div class="rightArrow dfaic">
+              <img class="invert" src="svgs/right.svg" alt="Right" />
+            </div>
+          </div>
+          <div class="signupBarRight dfjccaic">
+            <div class="signUp">
+              <button>Sign up</button>
+            </div>
+            <div>
+              <button class="login">Log in</button>
+            </div>
+          </div>
+        </div>
+        <div class="spotifyPlaylists dffdc">
+          <div class="artists dfjcsbaic">
+            <div>
+              <h2>Popular artists</h2>
+            </div>
+            <div><button>Show all</button></div>
+          </div>
+          <div class="panel"></div>
+        </div>
+        <div class="playbar dffdc rounded">
+          <div class="playbarMain dfjcsbaic">
+            <div class="playbarLeft">
+              <marquee
+                behavior=""
+                direction=""
+                class="playbarLeftMarquee"
+              ></marquee>
+            </div>
+            <div class="playbarMiddle">
+              <div class="playbarMiddleTop dfjccaic">
+                <div class="previous" title="Previous">
+                  <img
+                    id="previous"
+                    src="svgs/previous.svg"
+                    alt="previous"
+                  />
+                </div>
+                <div class="playbarPlay" title="Play">
+                  <img
+                    id="playbarPlay"
+                    src="svgs/playbarPlay.svg"
+                    alt="playbarPlay"
+                  />
+                </div>
+                <div class="next" title="Next">
+                  <img id="next" src="svgs/next.svg" alt="next" />
+                </div>
+                <div class="repeat" title="Repeat">
+                  <svg
+                    class="repeatSvg svgsCommon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M0 224c0 17.7 14.3 32 32 32s32-14.3 32-32c0-53 43-96 96-96l160 0 0 32c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l64-64c12.5-12.5 12.5-32.8 0-45.3l-64-64c-9.2-9.2-22.9-11.9-34.9-6.9S320 19.1 320 32l0 32L160 64C71.6 64 0 135.6 0 224zm512 64c0-17.7-14.3-32-32-32s-32 14.3-32 32c0 53-43 96-96 96l-160 0 0-32c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9l-64 64c-12.5 12.5-12.5 32.8 0 45.3l64 64c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-32 160 0c88.4 0 160-71.6 160-160z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="playbarMiddleBottom df">
+                <div class="currentSongTime">00:00</div>
+                <div class="seekbar dfjccaic">
+                  <div class="seekbarMain" id="seekbarMain">
+                    <div
+                      class="seekbarCircle"
+                      id="seekbarCircle"
+                    ></div>
+                  </div>
+                </div>
+                <div class="currentSongTotalTime">00:00</div>
+              </div>
+            </div>
+            <div class="playbarRight df">
+              <div class="volume">
+                <img id="volume" src="svgs/volume.svg" alt="volume" />
+              </div>
+              <div class="volumebar">
+                <div class="range">
+                  <input type="range" id="myinput" value="100" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="js/script.js"></script>
-</body>
-
+  </body>
 </html>
