@@ -180,7 +180,8 @@ async function playSongs() {
             let songName = e.querySelector(".songName").getElementsByTagName("h4")[0].innerText.trim()
             
             globalSongDivVar = e
-            let folderName = e.getElementsByTagName("a")[0].href.split("/")[5]
+            let folderName = e.getElementsByTagName("a")[0].href.split("/")[4]
+            console.log(e.getElementsByTagName("a")[0].href.split("/"));
             
             if (folderName == "popularArtists") {
                 folderName = folderName + "/" + e.getElementsByTagName("a")[0].href.split("/")[5]
