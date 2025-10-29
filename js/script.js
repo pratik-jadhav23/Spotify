@@ -114,11 +114,15 @@ async function getSongs(folderName, playlistName) {
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
         if (element.href.endsWith(".mp3")) {
-            console.log(as[index]);
+            // console.log(as[index]);
+            console.log(element.href);
+            console.log(element.title);
+            
+            
             // songsObj.songs.push("songs/" + element.href.split("/songs/")[1].replaceAll("%20", " "))
             // console.log(element);
             
-            // songsObj.songsNames.push(element.title)
+            songsObj.songsNames.push(element.title)
         }
         else{
             // console.log("else ",as[index]);
