@@ -40,7 +40,7 @@ async function getAllAlbums() {
             // console.log(as[i], as[i].innerText, as[i].href);
             // console.log(as[i].title);
             
-            globalAllFoldersNames.push({ folderName: "popularArtists/" + as[i].title, artistNames: as[i].title })
+            globalAllFoldersNames.push({ folderName: "popularArtists/" + as[i].title, artistNames: as[i].innerHTML })
         }
         // globalAllFoldersNames.push({ folderName: "popularArtists/" + as[i].innerHTML, artistNames: as[i].innerHTML })
     }
@@ -52,7 +52,7 @@ async function createSubArtists() {
     let imageSRC = ["https://i.scdn.co/image/ab67616100005174b19af0ea736c6228d6eb539c", "https://i.scdn.co/image/ab67616100005174fc7c542c04b5f7dc8f1b1c16", "https://i.scdn.co/image/ab676161000051740261696c5df3be99da6ed3f3", "https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca", "https://i.scdn.co/image/ab67616100005174a038d7d87f8577bbb9686bd3"]
     let artistName = ["A.R. Rahman", "Anirudh Ravichander", "Argit Singh", "Pritam", "Sachin-Jigar"]
     for (let index = 0; index < imageSRC.length; index++) {
-        let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName}">
+        let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName}" data-subFolder="${globalAllFoldersNames[index].artistNames}">
                         <div class="play">
                             <img src="svgs/play.svg" alt="play">
                         </div>
@@ -66,40 +66,40 @@ async function createSubArtists() {
                     </div>`
         document.querySelector(".panel").innerHTML = document.querySelector(".panel").innerHTML + html
     }
-     for (let index = 0; index < imageSRC.length; index++) {
-        let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName}">
-                        <div class="play">
-                            <img src="svgs/play.svg" alt="play">
-                        </div>
-                        <div class="subArtistsImage">
-                            <img src="${imageSRC[index]}" alt="image">
-                        </div>
-                        <div id="subArtistsData">
-                            <h4>${artistName[index]}</h4>
-                            <p>Artist</p>
-                        </div>
-                    </div>`
-        document.querySelector(".panel").innerHTML = document.querySelector(".panel").innerHTML + html
-    }
-     for (let index = 0; index < imageSRC.length; index++) {
-        let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName}">
-                        <div class="play">
-                            <img src="svgs/play.svg" alt="play">
-                        </div>
-                        <div class="subArtistsImage">
-                            <img src="${imageSRC[index]}" alt="image">
-                        </div>
-                        <div id="subArtistsData">
-                            <h4>${artistName[index]}</h4>
-                            <p>Artist</p>
-                        </div>
-                    </div>`
-        document.querySelector(".panel").innerHTML = document.querySelector(".panel").innerHTML + html
-    }
+    //  for (let index = 0; index < imageSRC.length; index++) {
+    //     let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName} data-subFolder="${globalAllFoldersNames[index].artistNames}">
+    //                     <div class="play">
+    //                         <img src="svgs/play.svg" alt="play">
+    //                     </div>
+    //                     <div class="subArtistsImage">
+    //                         <img src="${imageSRC[index]}" alt="image">
+    //                     </div>
+    //                     <div id="subArtistsData">
+    //                         <h4>${artistName[index]}</h4>
+    //                         <p>Artist</p>
+    //                     </div>
+    //                 </div>`
+    //     document.querySelector(".panel").innerHTML = document.querySelector(".panel").innerHTML + html
+    // }
+    //  for (let index = 0; index < imageSRC.length; index++) {
+    //     let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName} data-subFolder="${globalAllFoldersNames[index].artistNames}">
+    //                     <div class="play">
+    //                         <img src="svgs/play.svg" alt="play">
+    //                     </div>
+    //                     <div class="subArtistsImage">
+    //                         <img src="${imageSRC[index]}" alt="image">
+    //                     </div>
+    //                     <div id="subArtistsData">
+    //                         <h4>${artistName[index]}</h4>
+    //                         <p>Artist</p>
+    //                     </div>
+    //                 </div>`
+    //     document.querySelector(".panel").innerHTML = document.querySelector(".panel").innerHTML + html
+    // }
 }
 
 async function getSongs(folderName, playlistName) {
-    // console.log('fname = ', folderName);
+    console.log('fname = ', folderName, ', pname = ', playlistName);
     let allSongs = await fetch(`songs/${folderName}`)
     let response = await allSongs.text();
     // console.log(response);
@@ -115,14 +115,16 @@ async function getSongs(folderName, playlistName) {
         const element = as[index];
         if (element.href.endsWith(".mp3")) {
             // console.log(as[index]);
-            console.log(element.href);
-            console.log(element.title);
+            // console.log(element.title);
+            // console.log(element);
             
             
             // songsObj.songs.push("songs/" + element.href.split("/songs/")[1].replaceAll("%20", " "))
             // console.log(element);
+
+            songsObj.songs.push("songs/" + folderName + "/"+element.innerHTML)
             
-            songsObj.songsNames.push(element.title)
+            songsObj.songsNames.push(element.innerHTML)
         }
         else{
             // console.log("else ",as[index]);
@@ -170,12 +172,15 @@ function albumLoad() {
 
                 document.querySelector(`.allSongs`).innerHTML = ""
                 let tempFolderName = item.currentTarget.dataset.folder
-                await getSongs(item.currentTarget.dataset.folder, e.getElementsByTagName("h4")[0].innerText);
+                // console.log("item.currentTarget.dataset = ",item.currentTarget.dataset);
+                let updatedFolderName = item.currentTarget.dataset.folder+item.currentTarget.dataset.subfolder
+                console.log("updatedFolderName = ",updatedFolderName);
+                await getSongs(updatedFolderName, e.getElementsByTagName("h4")[0].innerText);
                 currentPlayedAlbum = { "name": document.querySelector(".playlistName").innerText, "e": e }
                 let event = document.querySelectorAll(".song") 
-                console.log(songsObj, tempFolderName);
+                console.log(songsObj.songsNames[0], tempFolderName);
                 
-                playMusic(songsObj.songsNames[0], tempFolderName, event[0], previousData)
+                playMusic(songsObj.songsNames[0], updatedFolderName, event[0], previousData)
                 previousData = event[0]
                 e.style.backgroundColor = "#393939"
                 e.children[0].style.opacity = 1
@@ -250,8 +255,8 @@ async function main() {
     //left panel all songs and albums load
     await getSongs("all", "Your Library");
     // on right side clicking album load songs
-    // albumLoad();
-    // await playSongs();
+    albumLoad();
+    await playSongs();
     let previousVolume
 
 
