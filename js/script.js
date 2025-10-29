@@ -31,9 +31,12 @@ async function getAllAlbums() {
     let div = document.createElement("div")
     div.innerHTML = response
     let as = div.getElementsByTagName("a")
+    // console.log(as);
     
-    for (let i = 1; i < as.length; i++) {
-        if (as[i].href.includes("popularArtists/")) {
+    for (let i = 0; i < as.length; i++) {
+        if (as[i].href) {
+            // console.log(as[i]);
+            as[i].href="songs/popularArtists/"+as[i].innerText
             // console.log(as[i], as[i].innerText, as[i].href);
             // console.log(as[i].title);
             
@@ -99,19 +102,27 @@ async function getSongs(folderName, playlistName) {
     // console.log('fname = ', folderName);
     let allSongs = await fetch(`songs/${folderName}`)
     let response = await allSongs.text();
+    // console.log(response);
+    
     
     let div = document.createElement("div")
     div.innerHTML = response
     let as = div.getElementsByTagName("a")
+    // console.log(as);
+    
     songsObj = { songs: [], songsNames: [] }
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
         if (element.href.endsWith(".mp3")) {
-            // console.log(as[index].href);
-            songsObj.songs.push("songs/" + element.href.split("/songs/")[1].replaceAll("%20", " "))
+            console.log(as[index]);
+            // songsObj.songs.push("songs/" + element.href.split("/songs/")[1].replaceAll("%20", " "))
             // console.log(element);
             
-            songsObj.songsNames.push(element.title)
+            // songsObj.songsNames.push(element.title)
+        }
+        else{
+            // console.log("else ",as[index]);
+            
         }
     }
     document.querySelector(".playlistName").innerText = playlistName
@@ -228,13 +239,15 @@ const playMusic = (songName, folderName, e, previousData) => {
 
 
 async function main() {
+    console.log("js running");
+    
     await getAllAlbums();
     await createSubArtists();
     //left panel all songs and albums load
     await getSongs("all", "Your Library");
     // on right side clicking album load songs
-    albumLoad();
-    await playSongs();
+    // albumLoad();
+    // await playSongs();
     let previousVolume
 
 
