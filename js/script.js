@@ -24,7 +24,7 @@ function secondsToMinutesSeconds(seconds) {
 }
 
 async function getAllAlbums() {
-    let allFolders = await fetch("songs/popularArtists")
+    let allFolders = await fetch("./songs/popularArtists")
     
     let response = await allFolders.text()
     // console.log(allFolders, response);
@@ -66,36 +66,7 @@ async function createSubArtists() {
                     </div>`
         document.querySelector(".panel").innerHTML = document.querySelector(".panel").innerHTML + html
     }
-     for (let index = 0; index < imageSRC.length; index++) {
-        let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName} data-subFolder="${globalAllFoldersNames[index].artistNames}">
-                        <div class="play">
-                            <img src="svgs/play.svg" alt="play">
-                        </div>
-                        <div class="subArtistsImage">
-                            <img src="${imageSRC[index]}" alt="image">
-                        </div>
-                        <div id="subArtistsData">
-                            <h4>${artistName[index]}</h4>
-                            <p>Artist</p>
-                        </div>
-                    </div>`
-        document.querySelector(".panel").innerHTML = document.querySelector(".panel").innerHTML + html
-    }
-     for (let index = 0; index < imageSRC.length; index++) {
-        let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName} data-subFolder="${globalAllFoldersNames[index].artistNames}">
-                        <div class="play">
-                            <img src="svgs/play.svg" alt="play">
-                        </div>
-                        <div class="subArtistsImage">
-                            <img src="${imageSRC[index]}" alt="image">
-                        </div>
-                        <div id="subArtistsData">
-                            <h4>${artistName[index]}</h4>
-                            <p>Artist</p>
-                        </div>
-                    </div>`
-        document.querySelector(".panel").innerHTML = document.querySelector(".panel").innerHTML + html
-    }
+    
 }
 
 async function getSongs(folderName, playlistName) {
