@@ -40,7 +40,7 @@ async function getAllAlbums() {
             // console.log(as[i], as[i].innerText, as[i].href);
             // console.log(as[i].title);
             
-            globalAllFoldersNames.push({ folderName: "popularArtists/" + as[i].title, artistNames: as[i].innerHTML })
+            globalAllFoldersNames.push({ folderName: "popularArtists/" + as[i].title, subFolderName: as[i].innerHTML })
         }
         // globalAllFoldersNames.push({ folderName: "popularArtists/" + as[i].innerHTML, artistNames: as[i].innerHTML })
     }
@@ -52,7 +52,7 @@ async function createSubArtists() {
     let imageSRC = ["https://i.scdn.co/image/ab67616100005174b19af0ea736c6228d6eb539c", "https://i.scdn.co/image/ab67616100005174fc7c542c04b5f7dc8f1b1c16", "https://i.scdn.co/image/ab676161000051740261696c5df3be99da6ed3f3", "https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca", "https://i.scdn.co/image/ab67616100005174a038d7d87f8577bbb9686bd3"]
     let artistName = ["A.R. Rahman", "Anirudh Ravichander", "Argit Singh", "Pritam", "Sachin-Jigar"]
     for (let index = 0; index < imageSRC.length; index++) {
-        let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName}" data-subFolder="${globalAllFoldersNames[index].artistNames}">
+        let html = `<div class="subArtists rounded" data-folder="${globalAllFoldersNames[index].folderName}" data-subFolder="${globalAllFoldersNames[index].subFolderName}">
                         <div class="play">
                             <img src="svgs/play.svg" alt="play">
                         </div>
@@ -70,7 +70,7 @@ async function createSubArtists() {
 }
 
 async function getSongs(folderName, playlistName) {
-    console.log('fname = ', folderName, ', pname = ', playlistName);
+    console.log('fname = ', folderName, '\npname = ', playlistName);
     let allSongs = await fetch(`songs/${folderName}`)
     let response = await allSongs.text();
     // console.log(response);
@@ -91,7 +91,7 @@ async function getSongs(folderName, playlistName) {
             
             
             // songsObj.songs.push("songs/" + element.href.split("/songs/")[1].replaceAll("%20", " "))
-            // console.log(element);
+            console.log(element);
 
             songsObj.songs.push("songs/" + folderName + "/"+element.innerHTML)
             
@@ -219,7 +219,7 @@ const playMusic = (songName, folderName, e, previousData) => {
 
 
 async function main() {
-    alert("Some funtionalities work in progress! All funtionalities will work when you download & run the project readme.md!") 
+    // alert("Some funtionalities work in progress!\nAll funtionalities will work when you download & run the project (readme.md)!") 
     console.log("js running");
     
     await getAllAlbums();
@@ -228,7 +228,7 @@ async function main() {
     await getSongs("all", "Your Library");
     // on right side clicking album load songs
     albumLoad();
-    await playSongs();
+    // await playSongs();
     let previousVolume
 
 
