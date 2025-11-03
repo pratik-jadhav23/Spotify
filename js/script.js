@@ -219,7 +219,7 @@ const playMusic = (songName, folderName, e, previousData) => {
 
 
 async function main() {
-    // alert("Some funtionalities work in progress!\nAll funtionalities will work when you download & run the project (readme.md)!") 
+    alert("Some funtionalities work in progress!\nAll funtionalities will work when you download & run the project (refer readme.md)!") 
     console.log("js running");
     
     await getAllAlbums();
